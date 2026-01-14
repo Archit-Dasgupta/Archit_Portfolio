@@ -10,9 +10,15 @@ import { SiteData } from '../src/SiteData';
 import { MobileVhAsCssVar } from '../src/MobileVhAsCssVar';
 import { useConsoleLogDevSignature } from '../src/useConsoleLogDevSignature';
 import { PlayAllVideosOnClickInLowPowerMode } from '../src/usePlayAllVideosOnClickInLowPowerMode';
+import dynamic from 'next/dynamic';
+
+const LoadingOverlay = dynamic(
+  () => import('../src/LoadingOverlay').then((mod) => mod.LoadingOverlay),
+  { ssr: false },
+);
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const siteData:SiteData = {
+  const siteData: SiteData = {
     startingScene: pageProps.scene ?? 'error',
     projects: pageProps.projects ?? null,
   };
@@ -60,6 +66,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         siteData={siteData}
       />
       <Component {...pageProps} />
+      <LoadingOverlay />
       <CustomCursor />
       <PlayAllVideosOnClickInLowPowerMode />
     </>
