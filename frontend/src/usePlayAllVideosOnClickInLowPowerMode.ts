@@ -5,9 +5,10 @@ export const usePlayAllVideosOnClickInLowPowerMode = () => {
 
   // Create a test muted video element, in low power mode this will fail to play with play()
   useEffect(() => {
-    let testVideo:HTMLVideoElement|null = document.createElement('video');
+    let testVideo: HTMLVideoElement | null = document.createElement('video');
     testVideo.muted = true;
     testVideo.play().catch((err) => {
+      // eslint-disable-next-line no-console
       console.warn('Low power mode detected via error', err);
       setLowPowerMode(true);
       testVideo?.remove();
@@ -30,7 +31,7 @@ export const usePlayAllVideosOnClickInLowPowerMode = () => {
       if (userAlreadyClicked) return;
       setUserAlreadyClicked(true);
 
-      let dummyVidToPlay:HTMLVideoElement|null = document.createElement('video');
+      let dummyVidToPlay: HTMLVideoElement | null = document.createElement('video');
       dummyVidToPlay.muted = true;
       dummyVidToPlay.play();
       dummyVidToPlay.remove();

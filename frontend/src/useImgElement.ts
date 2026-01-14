@@ -16,12 +16,10 @@ export const useImgElement = (
     const loaded = () => {
       setIsLoaded(true);
     };
-    if (img.complete && img.naturalHeight !== 0) {
-      loaded();
-    } else {
-      img.onload = loaded;
-    }
-  }, []);
+  } else {
+    img.onload = loaded;
+  }
+  }, [img]);
 
-  return { img, isLoaded };
+return { img, isLoaded };
 };
