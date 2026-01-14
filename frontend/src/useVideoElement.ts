@@ -96,21 +96,22 @@ export const useVideoElement = (
       setCanPlay, debug: options.debug, url, id: videoId,
     });
     setVideoElement(vid);
-    destroyVideoElement({ videoElement: vid, setCanPlay });
-  };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [options.debug, url]);
+    return () => {
+      destroyVideoElement({ videoElement: vid, setCanPlay });
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options.debug, url]);
 
-useEffect(() => {
-  if (!videoElement) return;
-  if (!canPlay) return;
-  if (playing) {
-    // if (!isPlaying(videoElement)) return;
-    videoElement.play();
-  } else {
-    videoElement.pause();
-  }
-}, [playing, videoElement, canPlay]);
+  useEffect(() => {
+    if (!videoElement) return;
+    if (!canPlay) return;
+    if (playing) {
+      // if (!isPlaying(videoElement)) return;
+      videoElement.play();
+    } else {
+      videoElement.pause();
+    }
+  }, [playing, videoElement, canPlay]);
 
-return { videoElement, canPlay };
+  return { videoElement, canPlay };
 };

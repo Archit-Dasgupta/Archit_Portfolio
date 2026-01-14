@@ -114,7 +114,7 @@ const draw = (
 
 export const DrawToRevealCanvas = ({
   drawFill,
-  onDraw = () => {},
+  onDraw = () => { },
 }: {
   drawFill: DrawFill;
   onDraw: () => void;
@@ -260,9 +260,9 @@ export const DrawToRevealCanvas = ({
     if (!canvasRef.current) return;
     if (
       canvasRef.current.width !==
-        canvasRef.current.offsetWidth * resolutionMultiplier ||
+      canvasRef.current.offsetWidth * resolutionMultiplier ||
       canvasRef.current.height !==
-        canvasRef.current.offsetHeight * resolutionMultiplier
+      canvasRef.current.offsetHeight * resolutionMultiplier
     ) {
       canvasRef.current.width =
         canvasRef.current.offsetWidth * resolutionMultiplier;
@@ -349,6 +349,7 @@ function multilineText(
     lineHeight: 1.1,
     minFontSize: 20,
     maxFontSize: 100,
+    // eslint-disable-next-line no-console
     logFunction: console.log,
     centerY: false,
     centerX: false,
