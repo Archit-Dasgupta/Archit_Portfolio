@@ -13,7 +13,7 @@ import { PlayAllVideosOnClickInLowPowerMode } from '../src/usePlayAllVideosOnCli
 import dynamic from 'next/dynamic';
 
 const LoadingOverlay = dynamic(
-  () => import('../src/LoadingOverlay').then((mod) => mod.LoadingOverlay),
+  () => import('../src/LoadingOverlay').then((mod) => mod.LoadingOverlay) as any,
   { ssr: false },
 );
 
